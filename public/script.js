@@ -150,3 +150,4 @@ Verifique se:
     oscilarMetricas();
     setInterval(oscilarMetricas, 3000);
 });
+// atualizacao v1.0.1 
