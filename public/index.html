@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DashOps — DevOps Service Monitor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-decor"></div>
+    <div class="background-decor-2"></div>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <div class="logo-area">
+                <div class="logo-icon"></div>
+                <div>
+                    <h1>DashOps</h1>
+                    <p class="subtitle">DevOps & Service Health Monitor</p>
+                </div>
+            </div>
+            <div class="version-badge">
+                <span class="pulse-icon"></span>
+                <span>System Version: <strong>v1.1.0</strong></span>
+            </div>
+        </header>
+
+        <!-- MAIN LAYOUT -->
+        <main class="dashboard-grid">
+            <!-- LEFT PANEL: API TERMINAL & TESTING -->
+            <section class="card console-card">
+                <div class="card-header">
+                    <h2>Terminal de Integração</h2>
+                    <span class="status-indicator-container">
+                        Status API: <span id="status-badge" class="badge badge-offline">Desconectado</span>
+                    </span>
+                </div>
+                <p class="card-description">
+                    Utilize este console para enviar requisições à rota `/v1` do seu Back-End implantado no Render ou rodando localmente no Docker.
+                </p>
+
+                <div class="api-form">
+                    <div class="input-group">
+                        <label for="api-url">URL do Back-End (API):</label>
+                        <input type="text" id="api-url" placeholder="Ex: http://localhost:5000 ou seu link do Render" value="http://localhost:5000">
+                    </div>
+                    <button id="btn-fetch" class="btn-primary">
+                        <span>Chamar API (/v1)</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </div>
+
+                <div class="console-box">
+                    <div class="console-header">
+                        <div class="console-buttons">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <span class="console-title">output_console.json</span>
+                    </div>
+                    <pre id="console-output">// Clique no botão acima para chamar a API e ver o retorno...</pre>
+                </div>
+            </section>
+
+            <!-- RIGHT PANEL: SYSTEM METRICS -->
+            <section class="card metrics-card">
+                <div class="card-header">
+                    <h2>Métricas de Infraestrutura</h2>
+                    <span class="badge badge-running">Docker Active</span>
+                </div>
+                <p class="card-description">
+                    Métricas de recurso do container em tempo real (simulação local do host).
+                </p>
+
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <div class="metric-info">
+                            <span>Uso de CPU</span>
+                            <span id="cpu-value">0%</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div id="cpu-bar" class="progress-bar-fill progress-cpu" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="metric-item">
+                        <div class="metric-info">
+                            <span>Uso de RAM</span>
+                            <span id="ram-value">0%</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div id="ram-bar" class="progress-bar-fill progress-ram" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-stats">
+                    <div class="stat-box">
+                        <span class="stat-label">Latência</span>
+                        <span id="stat-latency" class="stat-value">-- ms</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Uptime do Servidor</span>
+                        <span id="stat-uptime" class="stat-value">00h 00m 00s</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Total de Requisições</span>
+                        <span id="stat-requests" class="stat-value">0</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- PIPELINE INFO SECTION -->
+        <section class="card pipeline-card">
+            <h2>Pipeline de CI/CD Integrada</h2>
+            <p class="card-description">Entenda o fluxo automatizado configurado para este projeto através do GitHub Actions.</p>
+            
+            <div class="pipeline-flow">
+                <div class="pipeline-step">
+                    <div class="step-num">1</div>
+                    <h3>Commit Semântico</h3>
+                    <p>Commits com tags padronizadas para organizar o histórico (ex: <code>feat:</code>, <code>fix:</code>, <code>build:</code>).</p>
+                </div>
+                <div class="pipeline-arrow">➔</div>
+                <div class="pipeline-step">
+                    <div class="step-num">2</div>
+                    <h3>Tag SemVer</h3>
+                    <p>Criação e envio de tag Git ao repositório para versionar o release (ex: <code>v1.0.0</code>, <code>v1.1.0</code>).</p>
+                </div>
+                <div class="pipeline-arrow">➔</div>
+                <div class="pipeline-step">
+                    <div class="step-num">3</div>
+                    <h3>GitHub Actions</h3>
+                    <p>O arquivo <code>release.yml</code> monitora pushes de tag e inicia o build automaticamente.</p>
+                </div>
+                <div class="pipeline-arrow">➔</div>
+                <div class="pipeline-step">
+                    <div class="step-num">4</div>
+                    <h3>Deploy Automático</h3>
+                    <p>A API vai para o <strong>Render</strong> e o front estático vai para a <strong>Vercel</strong> de forma isolada.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>DashOps &copy; 2026 — Projeto Acadêmico Integrado (Parte 1 e Parte 2)</p>
+            <p class="footer-tech">Construído com HTML, CSS Vanilla e Docker (Nginx)</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

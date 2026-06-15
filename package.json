@@ -1,0 +1,8 @@
+{
+  "name": "dashops-front",
+  "version": "1.1.0",
+  "description": "DevOps Service Monitor Web Interface - Front-End",
+  "scripts": {
+    "start": "echo 'Static site, serve with a web server or Nginx'"
+  }
+}

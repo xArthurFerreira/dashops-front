@@ -1,0 +1,6 @@
+Esta pasta deve conter as seguintes evidências para a entrega:
+
+1. 1_front_nginx_docker.png: Print do Front-End aberto na porta 8080 (ex: http://localhost:8080/ ou link do Codespaces) servido pelo Nginx dentro do container Docker.
+2. 2_front_consumindo_api_docker.png: Print do Front-End (no local/Codespaces) consumindo com sucesso a API do back-end que está rodando em container Docker na porta 5000.
+3. 3_vercel_deployments.png: Print do painel "Deployments" na Vercel mostrando o histórico de deploys do Front-End.
+4. 4_tag_git_frontend.png: Print mostrando a criação/existência da tag v1.1.0 no repositório GitHub do Front-End.
